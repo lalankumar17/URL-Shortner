@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener & QR Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="brand-logo">
+            <span class="logo-text">Short URL</span>
+            <span class="logo-subtext">by Lalan Kumar</span>
+        </div>
+
+        <div class="card">
+            <div class="tabs">
+                <button class="tab-btn active" data-target="shorten-tab">
+                    <i class="fa-solid fa-link"></i> Shorten a Link
+                </button>
+                <button class="tab-btn" data-target="qr-tab">
+                    <i class="fa-solid fa-qrcode"></i> Generate QR Code
+                </button>
+            </div>
+
+            <div class="card-body">
+                <div class="tab-content active" id="shorten-tab">
+                    <h2 class="main-heading">Paste the URL to be shortened</h2>
+
+                    <div class="inline-form-group">
+                        <div class="inline-input-wrap">
+                            <div class="validated-input-shell" id="long-url-shell">
+                                <input type="url" id="long-url" placeholder="Enter the link here" required autocomplete="off">
+                                <span class="field-state-icon" aria-hidden="true">
+                                    <i class="fa-solid fa-circle-exclamation"></i>
+                                </span>
+                            </div>
+                            <p id="long-url-validation" class="field-error-message hidden">Required field</p>
+                        </div>
+                        <button class="action-btn-inline" id="shorten-btn">Shorten URL</button>
+                    </div>
+
+                    <div class="info-text">
+                        <p>ShortURL is a free tool to shorten URLs and generate easy-to-share short links.</p>
+                    </div>
+
+                    <div class="token-section hidden">
+                        <div class="token-heading-row">
+                            <div class="token-heading-text">
+                                <i class="fa-solid fa-key"></i>
+                                <span>TinyURL API Token</span>
+                            </div>
+                            <div class="token-heading-line"></div>
+                        </div>
+                        <div class="token-input-shell">
+                            <input type="password" id="shorten-tinyurl-token" class="token-input" placeholder="Enter your TinyURL API token" autocomplete="off" spellcheck="false">
+                            <button type="button" class="token-toggle-btn" data-target="shorten-tinyurl-token" aria-label="Show TinyURL API token">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <p class="token-helper-text">
+                            Your token is sent directly to the server for this request and saved only in this browser.
+                            <a href="https://tinyurl.com/app/settings/api" target="_blank" rel="noreferrer">Get a TinyURL API token -&gt;</a>
+                        </p>
+                    </div>
+
+                    <div id="shorten-result" class="result-box hidden">
+                        <p class="success-text">Your short link is ready!</p>
+                        <div class="result-url-box">
+                            <input type="text" id="result-url" readonly>
+                            <button class="copy-btn" id="copy-btn"><i class="fa-regular fa-copy"></i> Copy</button>
+                        </div>
+                    </div>
+
+                    <div id="error-message" class="error-text hidden"></div>
+
+                    <div class="settings-divider">
+                        <span>Options</span>
+                    </div>
+
+                    <div class="split-group">
+                        <div class="form-group flex-1">
+                            <label><i class="fa-solid fa-globe"></i> Domain</label>
+                            <select id="domain-select">
+                            </select>
+                        </div>
+                        <div class="form-group flex-1">
+                            <label>Custom Link (optional)</label>
+                            <div class="input-with-prefix">
+                                <span class="prefix">/</span>
+                                <input type="text" id="short-alias" placeholder="Add custom text here" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="qr-tab">
+                    <h2 class="main-heading">Paste the URL to generate QR Code</h2>
+
+                    <div class="inline-form-group">
+                        <div class="inline-input-wrap">
+                            <div class="validated-input-shell" id="qr-url-shell">
+                                <input type="url" id="qr-url" placeholder="Paste long URL here" required autocomplete="off">
+                                <span class="field-state-icon" aria-hidden="true">
+                                    <i class="fa-solid fa-circle-exclamation"></i>
+                                </span>
+                            </div>
+                            <p id="qr-url-validation" class="field-error-message hidden">Required field</p>
+                        </div>
+                        <button class="action-btn-inline qr-inline-btn" id="generate-qr-btn">Generate QR Code</button>
+                    </div>
+                    
+                    <div class="info-text">
+                        <p>ShortURL is a free tool to shorten URLs and generate easy-to-share short links.</p>
+                    </div>
+
+                    <div class="token-section hidden">
+                        <div class="token-heading-row">
+                            <div class="token-heading-text">
+                                <i class="fa-solid fa-key"></i>
+                                <span>TinyURL API Token</span>
+                            </div>
+                            <div class="token-heading-line"></div>
+                        </div>
+                        <div class="token-input-shell">
+                            <input type="password" id="qr-tinyurl-token" class="token-input" placeholder="Enter your TinyURL API token" autocomplete="off" spellcheck="false">
+                            <button type="button" class="token-toggle-btn" data-target="qr-tinyurl-token" aria-label="Show TinyURL API token">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <p class="token-helper-text">
+                            Your token is sent directly to the server for this request and saved only in this browser.
+                            <a href="https://tinyurl.com/app/settings/api" target="_blank" rel="noreferrer">Get a TinyURL API token -&gt;</a>
+                        </p>
+                    </div>
+
+                    <div class="settings-divider">
+                        <span>Options</span>
+                    </div>
+
+                    <div class="split-group">
+                        <div class="form-group flex-1">
+                            <label><i class="fa-solid fa-globe"></i> Domain</label>
+                            <select id="qr-domain-select">
+                            </select>
+                        </div>
+                        <div class="form-group flex-1">
+                            <label>Custom Link (optional)</label>
+                            <div class="input-with-prefix">
+                                <span class="prefix">/</span>
+                                <input type="text" id="qr-short-alias" placeholder="Add custom text here" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="qr-result" class="result-box qr-result-box hidden" style="margin-top: 20px;">
+                        <p class="success-text">Your QR Code is ready!</p>
+                        <div class="qr-image-container">
+                            <img id="qr-img" src="" alt="Generated QR Code">
+                        </div>
+                        <a id="qr-download" href="#" download="qrcode.png" class="download-btn">
+                            <i class="fa-solid fa-download"></i> Download Image
+                        </a>
+                    </div>
+
+                    <div id="qr-error-message" class="error-text hidden" style="margin-top: 15px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <p class="site-footer-copy">&copy; 2026 Lalan Kumar. All rights reserved.</p>
+            <div class="site-footer-links" aria-label="Social links">
+                <a href="https://www.linkedin.com/in/lalan-mahato" target="_blank" rel="noreferrer"
+                    class="site-footer-link" aria-label="LinkedIn profile">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/lalankumar17" target="_blank" rel="noreferrer"
+                    class="site-footer-link" aria-label="GitHub profile">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

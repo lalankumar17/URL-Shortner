@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: url-shortner
+    runtime: node
+    plan: free
+    autoDeployTrigger: commit
+    buildCommand: npm install --prefix node-backend
+    startCommand: npm --prefix node-backend start
+    healthCheckPath: /health
+    buildFilter:
+      paths:
+        - frontend/**
+        - node-backend/**
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: TINYURL_API_TOKEN
+        sync: false
