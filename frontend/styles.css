@@ -433,7 +433,7 @@ select:disabled {
 }
 
 .inline-form-group .action-btn-inline {
-    background-color: #2d88c9;
+    background-color: var(--primary-green);
     color: white;
     border: none;
     padding: 16px 30px;
@@ -447,15 +447,15 @@ select:disabled {
 }
 
 .inline-form-group .action-btn-inline:hover {
-    background-color: #2170a8;
+    background-color: var(--primary-green-hover);
 }
 
 .inline-form-group .action-btn-inline.qr-inline-btn {
-    background-color: var(--primary-green);
+    background-color: var(--primary-teal);
 }
 
 .inline-form-group .action-btn-inline.qr-inline-btn:hover {
-    background-color: var(--primary-green-hover);
+    background-color: var(--primary-teal-hover);
 }
 
 .info-text {
