@@ -16,3 +16,5 @@ services:
         value: 22
       - key: TINYURL_API_TOKEN
         sync: false
+      - key: BITLY_API_TOKEN
+        sync: false
